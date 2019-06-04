@@ -79,9 +79,15 @@ int main(int argc, char *argv[])
 		/*
 		 * 送信処理
 		 */
+        /* 日付･時刻表示 */
+        jstimer = time(NULL);
+        jstimeptr = localtime(&jstimer);
+        strftime(tmpstr, sizeof(tmpstr), "%Y.%m.%d %H:%M:%S ", jstimeptr);
+        sprintf(command, "MAIN.t11.txt=\"%s\"", tmpstr);
+        sendcmd(command);
 
         /* CPU 温度の表示 */
-//        dispcmdinfo();
+        dispcmdinfo();
 
 		/* ログステータスの読み取り */
 //        disploginfo();

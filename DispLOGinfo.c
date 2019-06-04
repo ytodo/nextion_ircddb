@@ -125,7 +125,7 @@ int disploginfo(void)
                 /* ヘッダーログを取得 */
                 status2[0] = '\0';
 
-                /* JST 時刻の算出（localtime でJST にならないため） */
+                /* JST 時刻の算出 */
                 jstimer = time(NULL);
                 jstimeptr = localtime(&jstimer);
 

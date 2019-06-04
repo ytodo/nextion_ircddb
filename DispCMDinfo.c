@@ -39,9 +39,8 @@ int dispcmdinfo(void)
             cnt_temp = 0;
 
             /* CPU 温度の表示*/
-            sprintf(command, "temp.txt=\"%s\"", cputemp);
+            sprintf(command, "MAIN.t20.txt=\"%s\"", cputemp);
             sendcmd(command);
-            sendcmd("t20.txt=temp.txt");
 
             /* CPU 温度による表示色変更 */
             strcpy(tmpstr, cputemp);
