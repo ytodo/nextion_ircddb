@@ -21,13 +21,9 @@
  */
 
 /**************************************************
- * D-STAR Repeater Nextion display for dmonitor   *
- *      main.h version 00.01                      *
- *      2018.11.01 - 2019.01.02                   *
- *                                                *
- *  Multi_Forwardが搭載されているリピータリストを *
- *  取得して「接続可能リピータ」としてdmonitor用  *
- *  ディスプレイに表示。タッチパネルから接続する　*
+ * D-STAR Nextion display for "ircDDBGateway"     *
+ *      main.h version 0.0                        *
+ *      2019.06.05 - 2019.                        *
  *                                                *
  **************************************************/
 #ifndef __NEXTION_H__
@@ -46,7 +42,7 @@
 
 /* Macros */
 #define SERIALPORT  "/dev/ttyAMA0"
-#define CONFFILE    "/etc/dstarrepeater"
+#define CONFFILE    "/etc/ircddbgateway"
 #define LOGDIR      "/var/log/"
 #define DUMPFILE    "/tmp/tcpdump.dstar"
 #define BAUDRATE	9600

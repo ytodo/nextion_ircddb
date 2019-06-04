@@ -37,19 +37,8 @@ int main(int argc, char *argv[])
 	fd = openport(SERIALPORT, BAUDRATE);
 
     /* 環境設定ファイルの読み取り */
+    sendcmd("DIM=50");
     getconfig();
-
-	/* グローバル変数の初期設定 */
-    sprintf(command, "IDLE.station.txt=\"%s\"", station);    // ノードコールサイン
-    sendcmd(command);
-    sendcmd("IDLE.status.txt=IDLE.ref.txt");                      // ステータス
-    sprintf(command, "IDLE.ipaddr.txt=\"%s\"", ipaddress);   // IPアドレス
-    sendcmd(command);
-    sprintf(command, "IDLE.type.txt=\"%s\"", modemtype);     // リピータ形式
-    sendcmd(command);
-
-    /* グローバル変数の値を画面表示 */
-    reflesh_idle();                                     // IDLE 画面の表示ルーティン
 
 	/* 送・受信ループ */
 	while (1) {
@@ -92,10 +81,10 @@ int main(int argc, char *argv[])
 		 */
 
         /* CPU 温度の表示 */
-        dispcmdinfo();
+//        dispcmdinfo();
 
 		/* ログステータスの読み取り */
-        disploginfo();
+//        disploginfo();
 	}
 
 	/* GPIO シリアルポートのクローズ*/

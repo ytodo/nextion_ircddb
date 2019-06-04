@@ -1,5 +1,5 @@
 [Unit]
-Description = Nextion Service for "DStarRepeater" by Yosh Todo/JE3HCZ
+Description = Nextion Service for "ircDDBGateway" by Yosh Todo/JE3HCZ
 After = network.target
 
 [Service]
