@@ -46,7 +46,47 @@ int getconfig(void)
             if ((ret = strstr(line, "echoEnabled=1"))   != NULL) sendcmd("MAIN.echo.val=1");
             if ((ret = strstr(line, "logEnabled=1"))    != NULL) sendcmd("MAIN.log.val=1");
             if ((ret = strstr(line, "dratsEnabled=1"))  != NULL) sendcmd("MAIN.drats.val=1");
-
+            /* 接続リピータの情報取得 */
+            if ((ret = strstr(line, "repeaterBand1"))   != NULL) {
+                sscanf(line, "repeaterBand1=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.mod1.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "frequency1"))      != NULL) {
+                sscanf(line, "frequency1=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.freq1.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "repeaterBand2"))   != NULL) {
+                sscanf(line, "repeaterBand2=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.mod2.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "frequency2"))      != NULL) {
+                sscanf(line, "frequency2=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.freq2.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "repeaterBand3"))   != NULL) {
+                sscanf(line, "repeaterBand3=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.mod3.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "frequency3"))      != NULL) {
+                sscanf(line, "frequency3=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.freq3.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "repeaterBand41"))   != NULL) {
+                sscanf(line, "repeaterBand4=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.mod4.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
+            if ((ret = strstr(line, "frequency4"))      != NULL) {
+                sscanf(line, "frequency4=%[^\n]", tmpstr);
+                sprintf(command, "STATUS1.freq4.txt=\"%s\"", tmpstr);
+                sendcmd(command);
+            }
 
         }
 
@@ -77,8 +117,9 @@ int getconfig(void)
         pclose(fp);
     }
 
-    sprintf(command, "MAIN.ipaddr.txt=\"%s:%s\"", ifname, ifaddr);
     sendcmd("page MAIN");
+    sendcmd("dim=30");
+    sprintf(command, "MAIN.ipaddr.txt=\"%s:%s\"", ifname, ifaddr);
     sendcmd(command);
 
     return (0);
