@@ -47,20 +47,20 @@ int dispcmdinfo(void)
             tmpstr[strlen(tmpstr) - 4] = '\0';
             int temp = atoi(tmpstr);
             if (temp < 45) {
-                sendcmd("t20.pco=2016");
-                sendcmd("t20.bco=25356");
+                sendcmd("MAIN.t20.pco=2016");
+                sendcmd("MAIN.t20.bco=25356");
             }
             if (temp >= 45 && temp < 50) {
-                sendcmd("t20.pco=65504");
-                sendcmd("t20.bco=25356");
+                sendcmd("MAIN.t20.pco=65504");
+                sendcmd("MAIN.t20.bco=25356");
             }
             if (temp >= 50 && temp < 55) {
-                sendcmd("t20.pco=64520");
-                sendcmd("t20.bco=25356");
+                sendcmd("MAIN.t20.pco=64520");
+                sendcmd("MAIN.t20.bco=25356");
             }
             if (temp >= 55) {
-                sendcmd("t20.pco=65504");
-                sendcmd("t20.bco=63488");
+                sendcmd("MAIN.t20.pco=65504");
+                sendcmd("MAIN.t20.bco=63488");
             }
         } else {
             exit(EXIT_FAILURE);

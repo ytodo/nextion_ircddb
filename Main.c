@@ -57,18 +57,18 @@ int main(int argc, char *argv[])
 
         switch (flag) {
             case 1:
-                sendcmd("page IDLE");
-                system("sudo systemctl restart dstarrepeater.service");
+                sendcmd("page MAIN");
+                system("sudo systemctl restart ircddbgateway.service");
                 system("sudo systemctl restart nextion.service");
 				break;
 
 			case 2:
-				sendcmd("page IDLE");
+				sendcmd("page MAIN");
 				system("sudo shutdown -r now");
 				break;
 
 			case 3:
-				sendcmd("page IDLE");
+				sendcmd("page MAIN");
 				system("sudo shutdown -h now");
 				break;
 
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
         dispcmdinfo();
 
 		/* ログステータスの読み取り */
-//        disploginfo();
+        disploginfo();
 	}
 
 	/* GPIO シリアルポートのクローズ*/
