@@ -22,7 +22,7 @@
 
 
 #include    "Nextion.h"
-#define     WAITTIME 50000  // microsec
+#define     WAITTIME 500000  // microsec
 
 int main(int argc, char *argv[])
 {
@@ -57,18 +57,18 @@ int main(int argc, char *argv[])
 
         switch (flag) {
             case 1:
-                sendcmd("page MAIN");
+                sendcmd("dim=10");
                 system("sudo systemctl restart ircddbgateway.service");
                 system("sudo systemctl restart nextion.service");
 				break;
 
 			case 2:
-				sendcmd("page MAIN");
+                sendcmd("dim=10");
 				system("sudo shutdown -r now");
 				break;
 
 			case 3:
-				sendcmd("page MAIN");
+                sendcmd("dim=10");
 				system("sudo shutdown -h now");
 				break;
 
@@ -79,6 +79,7 @@ int main(int argc, char *argv[])
 		/*
 		 * 送信処理
 		 */
+
         /* 日付･時刻表示 */
         jstimer = time(NULL);
         jstimeptr = localtime(&jstimer);
@@ -90,12 +91,16 @@ int main(int argc, char *argv[])
         dispcmdinfo();
 
 		/* ログステータスの読み取り */
-        disploginfo();
+        if (strlen(chkversion) == 0) disploginfo();
+
+        /* ストリームよりDStarRepeater のバージョンを取得 */
+//        dispstreaminfo();
+
+        usleep(WAITTIME);
+
 	}
 
 	/* GPIO シリアルポートのクローズ*/
 	close(fd);
 	return (EXIT_SUCCESS);
 }
-
-

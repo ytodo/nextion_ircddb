@@ -4,7 +4,7 @@
  ********************************************************/
 
 #include "Nextion.h"
-#define  SLEEPTIME   300000  /* micro sec (default 0.3秒=300000) */
+#define  SLEEPTIME   200000  /* micro sec (default 0.3秒=300000) */
 
 int dispcmdinfo(void)
 {
@@ -14,6 +14,7 @@ int dispcmdinfo(void)
     char    command[32]     = {'\0'};
     char    tmpstr[32]      = {'\0'};
     char    line[512]       = {'\0'};
+
 
     /*
      * CPU 温度の標準出力を取得

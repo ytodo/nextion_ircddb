@@ -1,5 +1,5 @@
 /********************************************************
- * dstarrepeaterd-yyyy-mm-dd.log を読み込み、
+ * ircDDBGateway-yyyy-mm-dd.log を読み込み、
  * 処理の結果情報を取得する
  ********************************************************/
 
@@ -28,36 +28,29 @@ int disploginfo(void)
     strftime(fname, sizeof(fname), "ircDDBGateway-%Y-%m-%d.log", timeptr);
     sprintf(ircddblogpath, "%s%s", LOGDIR, fname);
 
-    /* コマンドの標準出力オープン */
-    sprintf(cmdline, "tail -n1 %s", ircddblogpath);
-    if ((fp = popen(cmdline, "r")) != NULL ) {
-        fgets(line,  sizeof(line),  fp);
+    /* オープン */
+    if ((fp = fopen(ircddblogpath, "r")) != NULL) {
 
-        /*
-         * ゲートウェイのバージョン情報を取得
-         * M: 2019-06-02 06:04:37: Version text set to "ircDDB GW - 20190402"
-         */
-        if ((tmpptr = strstr(line, "Version text")) != NULL) {
+        while (fgets(line,  sizeof(line),  fp) != NULL) {
 
-            /* 一巡して全く同じ内容ならパス */
-            if (strncmp(tmpptr, chkversion, 41) != 0) {
+            /*
+             * ゲートウェイのバージョン情報を取得
+             * M: 2019-06-02 06:04:37: Version text set to "ircDDB GW - 20190402"
+             */
+            if ((tmpptr = strstr(line, "Version text")) != NULL) {
 
                 /* 一旦ダブりチェック用変数をクリアして新たに代入 */
-                chkversion[0] = '\0';
-                strncpy(chkversion, tmpptr, 41);
-
-                /* リンク先リフレクタを取得 */
-                tmpstr[0] = '\0';
-                strncpy(tmpstr, tmpptr + 21, 20);
+                strncpy(tmpstr, tmpptr + 33, 8);
+                sprintf(chkversion, "linux:ircDDBGateway-%s", tmpstr);
 
                 /* Nextion グローバル変数ircver.txt にバージョン情報を代入 */
-                sprintf(command, "STATUS1.ircver.txt=\"%s\"", tmpstr);
+                sprintf(command, "STATUS1.ircver.txt=\"%s\"", chkversion);
                 sendcmd(command);
             }
         }
 
         /* 標準出力クローズ */
-        pclose(fp);
+        fclose(fp);
 
     } else {
         exit(EXIT_FAILURE);
