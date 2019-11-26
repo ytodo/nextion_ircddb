@@ -26,6 +26,7 @@
 
 int main(int argc, char *argv[])
 {
+    char    *ret;
     int	    fd;
     int	    i;
     int	    flag;
@@ -51,9 +52,9 @@ int main(int argc, char *argv[])
         recvdata(usercmd);
 
         /* コマンドをスイッチに振り分ける */
-        if (strncmp(usercmd, "restart", 7) == 0) flag = 1;
-        if (strncmp(usercmd, "reboot",  6) == 0) flag = 2;
-        if (strncmp(usercmd, "shutdown",8) == 0) flag = 3;
+        if (strncmp(usercmd, "restart",  7) == 0) flag = 1;
+        if (strncmp(usercmd, "reboot",   6) == 0) flag = 2;
+        if (strncmp(usercmd, "shutdown", 8) == 0) flag = 3;
 
         switch (flag) {
             case 1:
