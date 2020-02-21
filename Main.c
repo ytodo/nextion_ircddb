@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 	fd = openport(SERIALPORT, BAUDRATE);
 
 	/* 環境設定ファイルの読み取り */
-	sendcmd("dim=30");
+	sendcmd("dim=dims");
 	getconfig();
 
 	/* 送・受信ループ */

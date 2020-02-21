@@ -131,7 +131,6 @@ int getconfig(void)
 	}
 
 	sendcmd("page MAIN");
-	sendcmd("dim=dims");
 	sprintf(command, "MAIN.ipaddr.txt=\"%s:%s\"", ifname, ifaddr);
 	sendcmd(command);
 
