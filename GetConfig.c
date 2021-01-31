@@ -27,17 +27,19 @@ int getconfig(void)
 		{
         		/* ircDDB.net */
 			if ((ret = strstr(line, "ircddbEnabled=1")) != NULL) sendcmd("MAIN.ircddbsw.val=1");
-			if ((ret = strstr(line, "ircddbHostname"))  != NULL)
+			if ((ret = strstr(line, "ircddbHostname="))  != NULL)
 			{
 				sscanf(line, "ircddbHostname=%[^\n]", tmpstr);
+				tmpstr[strlen(tmpstr) - 1] = '\0';
 				sprintf(command, "MAIN.ircddbhost.txt=\"%s\"", tmpstr);
 				sendcmd(command);
 			}
 			/* aprs.fi */
 			if ((ret = strstr(line, "aprsEnabled=1"))   != NULL) sendcmd("MAIN.aprssw.val=1");
-			if ((ret = strstr(line, "aprsHostname"))    != NULL)
+			if ((ret = strstr(line, "aprsHostname="))    != NULL)
 			{
 				sscanf(line, "aprsHostname=%[^\n]", tmpstr);
+				tmpstr[strlen(tmpstr) - 1] = '\0';
 				sprintf(command, "MAIN.aprshost.txt=\"%s\"", tmpstr);
 				sendcmd(command);
 			}
